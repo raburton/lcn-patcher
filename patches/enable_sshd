@@ -1,0 +1,10 @@
+echo "Enabling sshd..."
+mount -o remount,rw /
+echo "/etc/rc4.d before:"
+ls -l /etc/rc4.d
+ln -s ../init.d/sshd /etc/rc4.d/S50sshd
+echo "/etc/rc4.d after:"
+ls -l /etc/rc4.d
+
+echo "Finished."
+

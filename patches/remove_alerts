@@ -1,0 +1,7 @@
+echo "Built-in speed camera alerts removal tool."
+
+echo "Removing files..."
+rm -rf /var/opt/bosch/dynamic/ffs/myPOIs/
+
+echo "Finished."
+
