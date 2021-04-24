@@ -6,17 +6,16 @@ While it is possible to gain root access to the unit over ssh, with a connected 
 The method of gaining root access to the system via a usb stick was discovered by **@ea** and you'll find details of his exploit, used by this tool, [**here**](https://github.com/ea/bosch_headunit_root).
 
 ## Scripts included
- - `test` - check if the root access exploit works on your device.
-  -- Writes out a file to the usb stick, to demonstrate the exploit works on your system.
-  -- A good idea to try this one (on its own) before proceeding with any others.
- - `enable_sshd` - enables ssh server on the head unit.
-  -- You can then connect using an ASIX based usb network adapter connected to the head units usb port.
-  -- The ip address of the head unit is 172.17.0.1.
-  -- Login is *root*, with no password.
-
+- `test` - check if the root access exploit works on your device.
+    - Writes out a file to the usb stick, to demonstrate the exploit works on your system.
+    - A good idea to try this one (on its own) before proceeding with any others.
+- `enable_sshd` - enables ssh server on the head unit.
+    - You can then connect using an ASIX based usb network adapter connected to the head units usb port.
+    - The ip address of the head unit is 172.17.0.1.
+    - Login is *root*, with no password.
 - `remove_alerts` - removed built-in speed camera alerts.
- -- Gets rid of *Alerts_0913.ntq*, which cannot normally be removed.
- -- Prevent duplicate camera alerts when using your own camera list and out of date warnings from 2013.
+    - Gets rid of *Alerts_0913.ntq*, which cannot normally be removed.
+    - Prevent duplicate camera alerts when using your own camera list and out of date warnings from 2013.
 
 ## Instructions
 Run the tool (on Linux) and specify the scripts you want included in the image. Running the tool without parameters will list the available scripts. You will need to have `mke2fs` and `e2cp` tools installed (in Debian these come from packages `e2fsprogs` and `e2tools` respectively).
