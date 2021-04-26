@@ -1,0 +1,14 @@
+PATCHDIR=/opt/bosch/processes
+PATCHFILE=$PATCHDIR/libosal_linux_so.so
+
+echo "Map modification un-enabler."
+if [ -f $PATCHFILE.orig ]; then
+    mount -o remount,rw /
+    rm $PATCHFILE
+    mv $PATCHFILE.orig $PATCHFILE
+    echo "Original file restored."
+else
+    echo "No original file to restore. Not patched?"
+fi
+echo "Finished."
+

@@ -1,0 +1,44 @@
+PATCHDIR=/opt/bosch/processes
+PATCHFILE=$PATCHDIR/libosal_linux_so.so
+
+echo "Map modification enabler."
+
+if [ -f $PATCHFILE ]; then
+
+    mount -o remount,rw /
+
+    MD5=$(busybox md5sum $PATCHFILE | busybox cut -f1 -d ' ')
+
+    echo "File: $PATCHFILE"
+    echo "md5 before: $MD5"
+
+    if [ "$MD5" = "cf8295540a498921ac6217db660c5c79" ]; then
+        #D554
+        cp $PATCHFILE $PATCHFILE.orig
+	busybox printf "\x00\x00\xa0\xe3" | dd of=$PATCHFILE bs=1 seek=401088 conv=notrunc
+        echo "Patch successful."
+    elif [ "$MD5" = "97620f297dd5dd64460ce49b5274448f" ]; then
+        #D554
+        echo "File already patched."
+    elif [ "$MD5" = "a61e795598b6939b6ddf06b5bc4cf3ca" ]; then
+        #D605
+        cp $PATCHFILE $PATCHFILE.orig
+	busybox printf "\x00\x00\xa0\xe3" | dd of=$PATCHFILE bs=1 seek=401088 conv=notrunc
+        echo "Patch successful."
+    elif [ "$MD5" = "ccf749ec431fb30b6cae701200136d3c" ]; then
+        #D605
+        echo "File already patched."
+    else
+        echo "Unknown file version, copied to usb stick for anaylsis."
+        cp $PATCHFILE $MOUNTPATH/
+    fi
+
+    MD5=$(busybox md5sum $PATCHFILE | busybox cut -f1 -d ' ')
+    echo "md5 after: $MD5"
+else
+    echo "File: $PATCHFILE"
+    echo "File not found."
+fi
+
+echo "Finished."
+
