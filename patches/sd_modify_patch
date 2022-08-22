@@ -28,6 +28,14 @@ if [ -f $PATCHFILE ]; then
     elif [ "$MD5" = "ccf749ec431fb30b6cae701200136d3c" ]; then
         #D605
         echo "File already patched."
+    elif [ "$MD5" = "1d76e817dc12cd3627753ede681b8a01" ]; then
+        #F16A
+        cp $PATCHFILE $PATCHFILE.orig
+	busybox printf "\x00\x00\xa0\xe3" | dd of=$PATCHFILE bs=1 seek=401664 conv=notrunc
+        echo "Patch successful."
+    elif [ "$MD5" = "477b09d782b349c28702fc817f3a0aec" ]; then
+        #F16A
+        echo "File already patched."
     else
         echo "Unknown file version, copied to usb stick for anaylsis."
         cp $PATCHFILE $MOUNTPATH/

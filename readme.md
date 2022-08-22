@@ -13,12 +13,12 @@ The method of gaining root access to the system via a usb stick was discovered b
     - You can then connect using an ASIX based usb network adapter connected to the head units usb port.
     - The ip address of the head unit is 172.17.0.1.
     - Login is *root*, with no password.
-- `remove_alerts` - removed built-in speed camera alerts.
+- `remove_alerts` - remove built-in speed camera alerts.
     - Gets rid of *Alerts_0913.ntq*, which cannot normally be removed.
     - Prevent duplicate camera alerts when using your own camera list and out of date warnings from 2013.
 - `sd_modify_patch` - enable use of modified map data.
-    - Patches the signature check that normally stops the map data on the sd card being modified.
-    - Currently supports firmware D554 & D605.
+    - Patches the signature check that normally stops the map data on the sd card being modified. Hopefully we can then start to develop tools to modify the maps.
+    - Currently supports firmware F16A, D554 & D605.
     - Makes a backup on internal storage before modifying the library.
     - See [this blog post](https://richard.burtons.org/2021/04/26/allowing-map-modifications-on-nissan-connect/) for more info.
 - `sd_modify_unpatch` - undo the modify map patch.
